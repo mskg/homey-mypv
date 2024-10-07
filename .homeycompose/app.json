@@ -1,0 +1,28 @@
+{
+  "id": "app.mskg.my-pv",
+  "version": "1.0.0",
+  "compatibility": ">=5.0.0",
+  "sdk": 3,
+  "platforms": [
+    "local"
+  ],
+  "name": {
+    "en": "MYPV"
+  },
+  "description": {
+    "en": "Adds support for MYPV devices."
+  },
+  "category": [
+    "energy"
+  ],
+  "permissions": [],
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png",
+    "xlarge": "/assets/images/xlarge.png"
+  },
+  "author": {
+    "name": "Markus Kling",
+    "email": "markus.kling@gmail.com"
+  }
+}

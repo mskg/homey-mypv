@@ -1,0 +1,7 @@
+{
+  "extends": "athom/homey-app",
+  "rules": {
+    "strict": "off",
+    "@typescript-eslint/no-explicit-any": "warn"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "type": "enum",
+  "title": {
+    "en": "Mode"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "values": [
+    {
+      "id": "0",
+      "title": {
+        "en": "Standby"
+      }
+    },
+    {
+      "id": "1",
+      "title": {
+        "en": "Heating"
+      }
+    },
+    {
+      "id": "2",
+      "title": {
+        "en": "Heating Ensure"
+      }
+    },
+    {
+      "id": "3",
+      "title": {
+        "en": "Heating Finished"
+      }
+    },
+    {
+      "id": "4",
+      "title": {
+        "en": "No Connection / Disabled"
+      }
+    },
+    {
+      "id": "5",
+      "title": {
+        "en": "Error"
+      }
+    },
+    {
+      "id": "6",
+      "title": {
+        "en": "Blocking Period"
+      }
+    }
+  ],
+  "icon": "/assets/mode.svg"
+}

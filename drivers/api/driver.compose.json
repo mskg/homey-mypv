@@ -1,0 +1,84 @@
+{
+  "name": {
+    "en": "MYPV Heater"
+  },
+  "class": "heater",
+  "capabilities": [
+    "measure_temperature.t1",
+    "measure_temperature.ps",
+    "mypv_state_control",
+    "mypv_state_mode",
+    "measure_power"
+  ],
+  "capabilitiesOptions": {
+    "measure_temperature.t1": {
+      "title": {
+        "en": "Temperature 1"
+      }
+    },
+    "measure_temperature.ps": {
+      "title": {
+        "en": "Temperature Power Element"
+      }
+    }
+  },
+  "platforms": [
+    "local"
+  ],
+  "pair": [
+    {
+      "id": "enter_id"
+    },
+    {
+      "id": "list_devices",
+      "template": "list_devices",
+      "navigation": {
+        "next": "add_devices"
+      }
+    },
+    {
+      "id": "add_devices",
+      "template": "add_devices"
+    }
+  ],
+  "settings": [
+    {
+      "id": "serial",
+      "type": "text",
+      "label": {
+        "en": "Serialnumber"
+      },
+      "value": "John Doe",
+      "hint": {
+        "en": "The Serialnumber of the device."
+      }
+    },
+    {
+      "id": "token",
+      "type": "password",
+      "label": {
+        "en": "API Token"
+      },
+      "value": "",
+      "hint": {
+        "en": "The API Token of the device."
+      }
+    },
+    {
+      "id": "interval",
+      "type": "number",
+      "label": {
+        "en": "Interval"
+      },
+      "value": 60,
+      "hint": {
+        "en": "the refresh interval in seconds, minimum once every 10 seconds"
+      }
+    }
+  ],
+  "images": {
+    "small": "{{driverAssetsPath}}/images/small.png",
+    "large": "{{driverAssetsPath}}/images/large.png",
+    "xlarge": "{{driverAssetsPath}}/images/xlarge.png"
+  }
+}
