@@ -106,11 +106,11 @@
         }
       ],
       "images": {
-        "small": "/drivers/heater/assets/images/small.png",
-        "large": "/drivers/heater/assets/images/large.png",
-        "xlarge": "/drivers/heater/assets/images/xlarge.png"
+        "small": "/drivers/api/assets/images/small.png",
+        "large": "/drivers/api/assets/images/large.png",
+        "xlarge": "/drivers/api/assets/images/xlarge.png"
       },
-      "id": "heater"
+      "id": "api"
     }
   ],
   "capabilities": {

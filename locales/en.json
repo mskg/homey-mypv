@@ -7,7 +7,7 @@
             "intro": "Enter device serialnumber and API token. You can get those from https://live.my-pv.com",
             "required": "Both, serial and token are required values.",
             "saveSettings": "Save settings",
-            "title": "Connect device...",
+            "title": "Connect to https://live.my-pv.com",
             "not_found": "Could not find device, please check the serial and token."
         }
     }
