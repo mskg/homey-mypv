@@ -55,9 +55,9 @@ module.exports = class extends Homey.Device {
       this.setCapabilityValue('measure_temperature.t1', data.temp1 / 10),
       this.setCapabilityValue('measure_temperature.ps', data.temp_ps / 10),
 
-      // await this.setCapabilityValue('measure_temperature.t1', data.temp1 / 10);
-      // await this.setCapabilityValue('measure_temperature.t1', data.temp1 / 10);
-      // await this.setCapabilityValue('measure_temperature.t1', data.temp1 / 10);
+      // await this.setCapabilityValue('measure_temperature.t2', data.temp2 / 10);
+      // await this.setCapabilityValue('measure_temperature.t3', data.temp3 / 10);
+      // await this.setCapabilityValue('measure_temperature.t4', data.temp4 / 10);
 
       this.setCapabilityValue('mypv_state_control', data.ctrlstate),
       this.setCapabilityValue('mypv_state_mode', `${data.screen_mode_flag}`),
