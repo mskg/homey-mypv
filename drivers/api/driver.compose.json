@@ -43,12 +43,23 @@
   ],
   "settings": [
     {
+      "id": "ip",
+      "type": "text",
+      "label": {
+        "en": "IP Address"
+      },
+      "value": "",
+      "hint": {
+        "en": "The internal IP of the device."
+      }
+    },
+    {
       "id": "serial",
       "type": "text",
       "label": {
         "en": "Serialnumber"
       },
-      "value": "John Doe",
+      "value": "",
       "hint": {
         "en": "The Serialnumber of the device."
       }

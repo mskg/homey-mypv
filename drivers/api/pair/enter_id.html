@@ -27,9 +27,10 @@
         // variables
         var inputSerial = document.getElementById('serial').value;
         var inputToken = document.getElementById('token').value;
+        var ipToken = document.getElementById('ip').value;
 
         // IP is required
-        if (inputSerial == "" || inputToken == "") {
+        if (ip == "" && (inputSerial == "" || inputToken == "")) {
             // Give error, required values
             Homey.alert(__('pair.start.required'), 'error');
             return;
@@ -39,7 +40,8 @@
         // Build data array
         var data = {
             serial: inputSerial,
-            token: inputToken
+            token: inputToken,
+            ip: ipToken,
         };
         
         // Continue to back-end, pass along data
@@ -63,12 +65,16 @@
 
 <table class="pairSettings">
     <tr>
+        <td style="width:100px;" data-i18n="pair.start.ip">IP</td>
+        <td><input id="ip" type="text" pattern="^(\d+)$" placeholder="192.168.0.1" /></td>
+    </tr>
+    <tr>
         <td style="width:100px;" data-i18n="pair.start.serial">Serialnumber</td>
-        <td><input id="serial" type="text" pattern="^(\d+)$" placeholder="0000000000000000" required /></td>
+        <td><input id="serial" type="text" pattern="^(\d+)$" placeholder="0000000000000000" /></td>
     </tr>
     <tr>
         <td style="width:100px;" data-i18n="pair.start.token">Token</td>
-        <td><input id="token" type="text" placeholder="123A6123A0AA" required /></td>
+        <td><input id="token" type="text" placeholder="123A6123A0AA" /></td>
     </tr>
 </table>
 

@@ -23,7 +23,9 @@ module.exports = class extends Homey.Driver {
 
       try {
         const response = await axios.get(
-          `https://api.my-pv.com/api/v1/device/${data.serial}/data`,
+          data.ip && data.ip !== ''
+            ? `http://${data.ip}/data.jsn`
+            : `https://api.my-pv.com/api/v1/device/${data.serial}/data`,
           {
             headers: {
               Authorization: `Bearer ${data.token}`,

@@ -7,7 +7,7 @@ module.exports = class extends Homey.Device {
 
   async onInit() {
     this.log('API Device has been initialized');
-    this.startPolling();
+    await this.startPolling();
   }
 
   async onAdded() {
@@ -32,16 +32,20 @@ module.exports = class extends Homey.Device {
     changedKeys: string[];
   }): Promise<string | void> {
     this.log('API Device settings where changed');
-    this.startPolling();
+    await this.startPolling();
   }
 
-  startPolling() {
+  async startPolling() {
     // Clear any existing intervals
     if (this.pollingTask) this.homey.clearInterval(this.pollingTask);
 
     const refreshInterval = this.getSetting('interval') < 10
       ? 10 // refresh interval in seconds minimum 10
       : this.getSetting('interval');
+
+    this.log('Interval is', refreshInterval);
+
+    await this.fetchData();
 
     // Set up a new interval
     this.pollingTask = this.homey.setInterval(this.fetchData.bind(this), refreshInterval * 1000);
@@ -199,15 +203,22 @@ module.exports = class extends Homey.Device {
   async fetchData() {
     const serial = this.getSetting('serial');
     const token = this.getSetting('token');
+    const ip = this.getSetting('ip');
 
-    if (!serial || serial === '' || !token || token === '') {
+    if ((!ip || ip === '') && (!serial || serial === '' || !token || token === '')) {
       this.log('Missing settings.');
       return;
     }
 
     try {
+      const url = ip && ip !== ''
+        ? `http://${ip}/data.jsn`
+        : `https://api.my-pv.com/api/v1/device/${serial}/data`;
+
+      this.log('Fetching', url);
+
       const response = await axios.get(
-        `https://api.my-pv.com/api/v1/device/${serial}/data`,
+        url,
         {
           headers: {
             Authorization: `Bearer ${token}`,
