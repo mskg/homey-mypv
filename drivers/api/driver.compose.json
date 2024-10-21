@@ -8,9 +8,21 @@
     "measure_temperature.ps",
     "mypv_state_control",
     "mypv_state_mode",
-    "measure_power"
+    "measure_power",
+    "onoff",
+    "mypv_target",
+    "target_temperature.t1"
   ],
   "capabilitiesOptions": {
+    "onoff": {
+      "type": "button",
+      "uiQuickAction": false
+    },
+    "target_temperature.t1": {
+      "min": 50,
+      "max": 85,
+      "step": 0.1
+    },
     "measure_temperature.t1": {
       "title": {
         "en": "Temperature 1"

@@ -1,0 +1,12 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Target"
+  },
+  "getable": true,
+  "setable": true,
+  "uiComponent": "sensor",
+  "min": -3000,
+  "max": 0,
+  "icon": "/assets/target.svg"
+}
