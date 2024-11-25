@@ -8,9 +8,7 @@ module.exports = class extends Homey.Device {
   async onInit() {
     this.log('API Device has been initialized');
 
-    // await this.addCapability('target_temperature.t1');
-
-    await this.registerCapabilityListener('onoff', (val) => this.setField('devmode', val ? 1 : 4, 'data'));
+    await this.registerCapabilityListener('onoff', (val) => this.setField('devmode', val ? 0 : 1, 'data'));
     await this.registerCapabilityListener('mypv_target', (val) => this.setField('ptarget', val));
     await this.registerCapabilityListener('target_temperature.t1', (val) => this.setField('ww1target', val * 10));
 
