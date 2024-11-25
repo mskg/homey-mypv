@@ -8,7 +8,7 @@ module.exports = class extends Homey.Device {
   async onInit() {
     this.log('API Device has been initialized');
 
-    await this.registerCapabilityListener('onoff', (val) => this.setField('devmode', val ? 0 : 1, 'data'));
+    await this.registerCapabilityListener('onoff', (val) => this.setField('devmode', val ? 1 : 0, 'data'));
     await this.registerCapabilityListener('mypv_target', (val) => this.setField('ptarget', val));
     await this.registerCapabilityListener('target_temperature.t1', (val) => this.setField('ww1target', val * 10));
 
@@ -90,7 +90,7 @@ module.exports = class extends Homey.Device {
 
       this.setCapabilityValue('measure_power', data.power_act),
       // eslint-disable-next-line eqeqeq
-      this.setCapabilityValue('onoff', data.screen_mode_flag != 4),
+      this.setCapabilityValue('onoff', mode != 4),
 
       this.setCapabilityValue('mypv_target', setup.ptarget),
       this.setCapabilityValue('target_temperature.t1', setup.ww1target / 10),
@@ -112,12 +112,15 @@ module.exports = class extends Homey.Device {
       this.log('Fetching', url);
 
       await axios.get(
-        `${url}?${name}=${val}`,
+        url,
         {
           headers: {
             Authorization: `Bearer ${this.getSetting('token')}`,
             'Content-Type': 'application/json',
             Accept: 'application/json',
+          },
+          params: {
+            [name]: val,
           },
         },
       );
