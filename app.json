@@ -41,7 +41,8 @@
         "measure_power",
         "onoff",
         "mypv_target",
-        "target_temperature.t1"
+        "target_temperature.t1",
+        "meter_power"
       ],
       "capabilitiesOptions": {
         "onoff": {

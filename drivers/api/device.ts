@@ -12,6 +12,10 @@ module.exports = class extends Homey.Device {
     await this.registerCapabilityListener('mypv_target', (val) => this.setField('ptarget', val));
     await this.registerCapabilityListener('target_temperature.t1', (val) => this.setField('ww1target', val * 10));
 
+    if (!this.hasCapability('meter_power')) {
+      await this.addCapability('meter_power');
+    }
+
     await this.startPolling();
   }
 
@@ -60,8 +64,6 @@ module.exports = class extends Homey.Device {
 
     this.log('Interval is', refreshInterval);
 
-    await this.pollingTask();
-
     // Set up a new interval
     this.pollingTaskReference = this.homey.setInterval(this.pollingTask.bind(this), refreshInterval * 1000);
   }
@@ -76,6 +78,14 @@ module.exports = class extends Homey.Device {
     }
 
     const mode = data.screen_mode_flag;
+
+    // The last power reading lasted for interval - seconds
+    const lastPower = this.getCapabilityValue('measure_power');
+    const interval = this.getSetting('interval') < 10 ? 10 : this.getSetting('interval'); // duplicated
+    let lastEnergy = this.getCapabilityValue('meter_power');
+
+    // s / 3600; W / 1000 = KwH
+    lastEnergy += (lastPower * interval) / 3600.0 / 1000.0;
 
     await Promise.all([
       this.setCapabilityValue('measure_temperature.t1', data.temp1 / 10),
@@ -94,6 +104,8 @@ module.exports = class extends Homey.Device {
 
       this.setCapabilityValue('mypv_target', setup.ptarget),
       this.setCapabilityValue('target_temperature.t1', setup.ww1target / 10),
+
+      this.setCapabilityValue('meter_power', lastEnergy),
     ]);
   }
 
